@@ -3,7 +3,7 @@
 
 const DATA_URL = "json/data.json"; // URL que contiene los datos que queremos mostrar
 const container = document.getElementById("container");
-console.log(container);
+
  // "Traemos" utilizando el DOM el div de id "container" para colocar la información en él
 
 /**
@@ -20,16 +20,12 @@ function showData(dataArray) {
 }
 
 // Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
-fetch(DATA_URL)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Error al obtener los datos'); // Manejo de errores si el fetch falla
-    }
-    return response.json(); // Convertimos la respuesta a JSON
-  })
+fetch (DATA_URL)
+  .then((resp) => resp.json())
   .then(data => {
-    showData(data.students); // Accedemos al array de estudiantes y lo pasamos a la función showData
+    const students = data.students;
+    showData(students); 
   })
-  .catch(error => {
-    console.error('Hubo un problema con el fetch:', error); // Mostramos un error en caso de que algo salga mal
-  });
+  .catch(function(error) {
+    console.log(error);
+    });
